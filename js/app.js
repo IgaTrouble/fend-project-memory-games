@@ -5,6 +5,8 @@
  let cards = [...card];
  let openedCards = []
  let matchCounter = 0;
+ 
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -53,10 +55,11 @@
       enable()
       openedCards = []
     },
-    500
+    800
     )
   }
 }
+ 
  
  
 
@@ -92,3 +95,18 @@ function shuffle(array) {
   cards[i].addEventListener("click", cardOpen);
   cards[i].addEventListener("click", display1stCard);
   cards[i].addEventListener("click", moveCounter);
+  
+  
+  
+   //Counter move function
+ let moves = 0;
+ function counterMoves(){
+   moves += 1
+   document.querySelector(".moves").innerHTML = moves + " Moves" ;
+   rating()
+ }
+
+ function restartMoves(){
+   moves = 0;
+   document.querySelector(".moves").innerHTML = moves + " Moves" ;
+ }
