@@ -3,7 +3,6 @@
  */
  let card = document.querySelectorAll(".card");
  let cards = [...card];
- 
  let openedCards = []
 /*
  * Display the cards on the page
@@ -11,6 +10,15 @@
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+ 
+ //  display cards function
+  var displayCard = function () {
+   this.classList.toggle('open')
+   this.classList.toggle('show')
+   this.classList.toggle('disabled')
+ 
+ 
+ 
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -39,7 +47,7 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
- //Event listener for a card
+ //Event listener for a card - click
   for (let i = 0; i < cards.length; i++) {
   cards[i].addEventListener("click", cardOpen);
   cards[i].addEventListener("click", display1stCard);
