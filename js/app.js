@@ -33,6 +33,32 @@
      openModal()
  }
  
+ 
+   /* match and unmatch cards */
+  function match () {
+    openedCards[0].classList.add('match', 'disabled')
+    openedCards[1].classList.add('match', 'disabled')
+    openedCards[0].classList.remove('show', 'open', 'no-event')
+    openedCards[1].classList.remove('show', 'open', 'no-event')
+    openedCards = []
+  }
+
+  function unmatch () {
+    openedCards[0].classList.add('unmatched')
+    openedCards[1].classList.add('unmatched')
+    disable()
+    setTimeout(function () {
+      openedCards[0].classList.remove('open', 'show', 'no-event', 'unmatched')
+      openedCards[1].classList.remove('open', 'show', 'no-event', 'unmatched')
+      enable()
+      openedCards = []
+    },
+    500
+    )
+  }
+}
+ 
+ 
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
