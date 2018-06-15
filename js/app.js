@@ -39,3 +39,8 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
+ //Event listener for a card
+  for (let i = 0; i < cards.length; i++) {
+  cards[i].addEventListener("click", cardOpen);
+  cards[i].addEventListener("click", display1stCard);
+  cards[i].addEventListener("click", moveCounter);
