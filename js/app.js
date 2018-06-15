@@ -4,6 +4,7 @@
  let card = document.querySelectorAll(".card");
  let cards = [...card];
  let openedCards = []
+ let matchCounter = 0;
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -17,7 +18,20 @@
    this.classList.toggle('show')
    this.classList.toggle('disabled')
  
- 
+ // function card open
+  function cardOpen() {
+     openedCards.push(this);
+     let cardsLength = openedCards.length;
+     if(cardsLength === 2){
+         if(openedCards[0].type === openedCards[1].type){
+            match()
+            matchCounter++ ;
+         } else {
+            unmatch()
+         }
+     }
+     openModal()
+ }
  
 
 // Shuffle function from http://stackoverflow.com/a/2450976
