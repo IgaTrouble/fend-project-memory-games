@@ -105,7 +105,6 @@ function shuffle(array) {
  function counterMoves(){
    moves += 1
    document.querySelector(".moves").innerHTML = moves;
-   //rating()
  }
 
  function restartMoves(){
@@ -124,7 +123,7 @@ function shuffle(array) {
   }
   
   
-   //Disable clicking cards when two cards are open
+   //Disable clicking more than two cards 
  function disable(){
    let i;
    for (i=0; i<cards.length; i++){
@@ -132,7 +131,7 @@ function shuffle(array) {
    }
  }
 
- //Enable clicking cards after two unmatched cards are closed
+ //Enable clicking when cards closed
  function enable(){
    let i;
    for (i=0; i<cards.length; i++){
