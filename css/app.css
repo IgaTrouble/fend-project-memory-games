@@ -116,3 +116,35 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
+
+ /* Modal */
+ 
+ .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+	z-index: 3; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */	
+ 
+ }
+ 
+ .modal-content {
+    background-color: pink;
+    margin: auto;
+    padding: 20px;
+    border: none;
+    border-radius: 7px;
+    width: 670px;
+    height: auto;
+    text-align: center;
+}
+
+.modal-body{
+    font-size: 30px;
+
+}

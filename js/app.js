@@ -5,35 +5,51 @@
  let cards = [...card];
  let openedCards = []
  let matchCounter = 0;
- 
+ const deckShuffle = document.querySelector(".deck");
+ let modal = document.querySelector(".modal");
+ let shuffledCards = shuffle(cards)
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
+ 
+ 
+ 
+  //Event listener for a card - click
+  for (let i = 0; i < cards.length; i++) {
+  cards[i].addEventListener("click", cardOpen);
+  cards[i].addEventListener("click", displayCard);
+  cards[i].addEventListener("click", counterMoves);
+  
+  }
  
  //  display cards function
   var displayCard = function () {
    this.classList.toggle('open')
    this.classList.toggle('show')
    this.classList.toggle('disabled')
- 
+  } 
+  
  // function card open
-  function cardOpen() {
+  function cardOpen(event) {
      openedCards.push(this);
      let cardsLength = openedCards.length;
      if(cardsLength === 2){
-         if(openedCards[0].type === openedCards[1].type){
+         if(openedCards[0].innerHTML === openedCards[1].innerHTML){
             match()
             matchCounter++ ;
+			console.log(matchCounter);
          } else {
             unmatch()
          }
      }
-     openModal()
+		if (matchCounter ===8){
+		openModal()
+		}
  }
+ 
+ 
+  function openModal() {
+    modal.style.display = "block";
+  }
+ 
  
  
    /* match and unmatch cards */
@@ -58,10 +74,7 @@
     800
     )
   }
-}
- 
- 
- 
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -79,34 +92,61 @@ function shuffle(array) {
 }
 
 
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
-
  //Event listener for a card - click
   for (let i = 0; i < cards.length; i++) {
   cards[i].addEventListener("click", cardOpen);
-  cards[i].addEventListener("click", display1stCard);
-  cards[i].addEventListener("click", moveCounter);
+  cards[i].addEventListener("click", displayCard);
+  cards[i].addEventListener("click", counterMoves);
   
-  
+  }
   
    //Counter move function
  let moves = 0;
  function counterMoves(){
    moves += 1
-   document.querySelector(".moves").innerHTML = moves + " Moves" ;
-   rating()
+   document.querySelector(".moves").innerHTML = moves;
+   //rating()
  }
 
  function restartMoves(){
    moves = 0;
-   document.querySelector(".moves").innerHTML = moves + " Moves" ;
+   document.querySelector(".moves").innerHTML = moves;
  }
+
+   function startGame(){
+	   for (let i= 0; i < shuffledCards.length; i++){
+       deckShuffle.appendChild(shuffledCards[i])
+	   shuffledCards[i].classList.remove('show', 'open', 'match', 'disabled')
+        }
+	  matchCounter = 0;
+	  restartMoves();
+	  openedCards = [];
+  }
+  
+  
+   //Disable clicking cards when two cards are open
+ function disable(){
+   let i;
+   for (i=0; i<cards.length; i++){
+     cards[i].classList.add("disabled");
+   }
+ }
+
+ //Enable clicking cards after two unmatched cards are closed
+ function enable(){
+   let i;
+   for (i=0; i<cards.length; i++){
+     cards[i].classList.remove("disabled");
+   }
+ }
+  
+  function restartGames() {
+	  startGame();
+  }
+  
+  // when f5 browser
+  
+	//restart game
+  document.getElementById("restart").addEventListener("click", restartGames);
+  
+  
