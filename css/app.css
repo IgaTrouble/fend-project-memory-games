@@ -148,3 +148,24 @@ h1 {
     font-size: 30px;
 
 }
+
+li {
+	 list-style-type:none;
+}
+
+#basicUsage {
+	padding-left: 40px;
+}
+
+
+.modal-body .starsModal {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    margin: 0 5px 0 0;
+}
+
+.modal-body .starsModal li {
+    list-style: none;
+    display: inline-block;
+}{

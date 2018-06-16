@@ -18,3 +18,12 @@ For specific, detailed instructions, look at the project instructions in the [Ud
 This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
 
 For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+
+##
+THE RULES FOR PLAYING "MEMORY"
+Clock on and turn over any two cards.
+If the two cards match, it is your success. 
+If they don't match, they will turn back over.
+Remember what was on each card and where it was.
+The game is over when all the cards have been matched.
+The less your moves the better your score. 

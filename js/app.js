@@ -8,6 +8,10 @@
  const deckShuffle = document.querySelector(".deck");
  let modal = document.querySelector(".modal");
  let shuffledCards = shuffle(cards)
+ let moves = 0;
+ let star = document.querySelectorAll(".star");
+ let stars = [...star];
+ // var timer = new Timer();
 
  
  
@@ -48,6 +52,9 @@
  
   function openModal() {
     modal.style.display = "block";
+	document.querySelector("#timer").innerHTML = timer;
+	ratingStars();
+	
   }
  
  
@@ -101,7 +108,6 @@ function shuffle(array) {
   }
   
    //Counter move function
- let moves = 0;
  function counterMoves(){
    moves += 1
    document.querySelector(".moves").innerHTML = moves;
@@ -110,6 +116,7 @@ function shuffle(array) {
  function restartMoves(){
    moves = 0;
    document.querySelector(".moves").innerHTML = moves;
+   ratingStar();
  }
 
    function startGame(){
@@ -120,6 +127,8 @@ function shuffle(array) {
 	  matchCounter = 0;
 	  restartMoves();
 	  openedCards = [];
+	  timer.start();
+	  
   }
   
   
@@ -141,11 +150,43 @@ function shuffle(array) {
   
   function restartGames() {
 	  startGame();
+	  closeModal();
+	  timer.stop();
   }
   
   // when f5 browser
+    window.onload = startGame();
   
 	//restart game
   document.getElementById("restart").addEventListener("click", restartGames);
+  document.querySelector("#playAgain").addEventListener("click", restartGames);
+
   
-  
+ 
+  // function ratingStars 
+	function ratingStars() {
+		if (moves < 20) {
+			document.querySelectorAll(".starModel");
+		}
+		if (moves > 19 && moves < 28) {
+			document.querySelector(".twoS").style.display = "none";
+		}
+		 if (moves > 28) {
+			document.querySelector(".twoS").style.display = "none";
+			document.querySelector(".treeS").style.display = "none";
+  }
+		
+	}	
+
+
+//close modal
+ closeModal = document.querySelector(".close")
+  closeModal.addEventListener("click", function() {
+      modal.style.display = "none";
+  });
+
+  //timer function 
+timer.addEventListener('secondsUpdated', function (e) {
+    $('#basicUsage').html(timer.getTimeValues().toString());
+});
+      
