@@ -18,9 +18,9 @@
 
         <section class="score-panel">
         	<ul class="stars">
-        		<li><i class="fa fa-star"></i></li>
-        		<li><i class="fa fa-star"></i></li>
-        		<li><i class="fa fa-star"></i></li>
+        		<li><i class="fa fa-star s1"></i></li>
+        		<li><i class="fa fa-star s2"></i></li>
+        		<li><i class="fa fa-star s3"></i></li>
         	</ul>
 
         	<span class="moves">0</span> Moves
@@ -94,8 +94,9 @@
         </div>
         <div class="modal-body">
           <p>You are the winner!</p>
-		  <li> Your time was :</li>
+		  <li> Your time was :
           <span id="timer">00:00:00</span>
+		  </li>
           <ul class="starsModal">
 			<span>Your Score is :</span>
             <li><i class="fa fa-star oneS"></i></li>
@@ -111,9 +112,12 @@
     </div>
  
  </div>
+ 	<script src="js/easytimer.min.js"></script>
+	<script> var timerInstance = new Timer(); </script>
     <script src="js/app.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<!-- <script src="lib/easytimer/dist/easytimer.min.js"></script> -->
+
+	
 </body>
 </html>

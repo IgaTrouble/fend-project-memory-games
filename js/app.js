@@ -11,10 +11,14 @@
  let moves = 0;
  let star = document.querySelectorAll(".star");
  let stars = [...star];
- // var timer = new Timer();
+ let yourTime;
+ var timer = new Timer();
+ 
+ timer.addEventListener('secondsUpdated', function (e) {
+    $('#basicUsage').html(timer.getTimeValues().toString());
+});
 
- 
- 
+
  
   //Event listener for a card - click
   for (let i = 0; i < cards.length; i++) {
@@ -25,7 +29,7 @@
   }
  
  //  display cards function
-  var displayCard = function () {
+  function displayCard() {
    this.classList.toggle('open')
    this.classList.toggle('show')
    this.classList.toggle('disabled')
@@ -39,12 +43,12 @@
          if(openedCards[0].innerHTML === openedCards[1].innerHTML){
             match()
             matchCounter++ ;
-			console.log(matchCounter);
          } else {
             unmatch()
          }
      }
 		if (matchCounter ===8){
+		timer.stop();
 		openModal()
 		}
  }
@@ -52,7 +56,8 @@
  
   function openModal() {
     modal.style.display = "block";
-	document.querySelector("#timer").innerHTML = timer;
+	let yourTime = document.querySelector("#basicUsage").innerHTML;
+	document.querySelector("#timer").innerHTML = yourTime;
 	ratingStars();
 	
   }
@@ -61,10 +66,10 @@
  
    /* match and unmatch cards */
   function match () {
-    openedCards[0].classList.add('match', 'disabled')
-    openedCards[1].classList.add('match', 'disabled')
-    openedCards[0].classList.remove('show', 'open', 'no-event')
-    openedCards[1].classList.remove('show', 'open', 'no-event')
+    openedCards[0].classList.add('match')
+    openedCards[1].classList.add('match')
+    openedCards[0].classList.remove('show', 'open')
+    openedCards[1].classList.remove('show', 'open')
     openedCards = []
   }
 
@@ -73,12 +78,12 @@
     openedCards[1].classList.add('unmatched')
     disable()
     setTimeout(function () {
-      openedCards[0].classList.remove('open', 'show', 'no-event', 'unmatched')
-      openedCards[1].classList.remove('open', 'show', 'no-event', 'unmatched')
+      openedCards[0].classList.remove('open', 'show', 'unmatched')
+      openedCards[1].classList.remove('open', 'show', 'unmatched')
       enable()
       openedCards = []
     },
-    800
+    1200
     )
   }
 
@@ -98,14 +103,6 @@ function shuffle(array) {
     return array;
 }
 
-
- //Event listener for a card - click
-  for (let i = 0; i < cards.length; i++) {
-  cards[i].addEventListener("click", cardOpen);
-  cards[i].addEventListener("click", displayCard);
-  cards[i].addEventListener("click", counterMoves);
-  
-  }
   
    //Counter move function
  function counterMoves(){
@@ -116,7 +113,7 @@ function shuffle(array) {
  function restartMoves(){
    moves = 0;
    document.querySelector(".moves").innerHTML = moves;
-   ratingStar();
+   ratingStars();
  }
 
    function startGame(){
@@ -127,8 +124,7 @@ function shuffle(array) {
 	  matchCounter = 0;
 	  restartMoves();
 	  openedCards = [];
-	  timer.start();
-	  
+	  timer.start();  
   }
   
   
@@ -150,15 +146,15 @@ function shuffle(array) {
   
   function restartGames() {
 	  startGame();
-	  closeModal();
-	  timer.stop();
+	  modal.style.display = "none";
+	  timer.reset();
   }
   
   // when f5 browser
-    window.onload = startGame();
+  window.onload = startGame();
   
 	//restart game
-  document.getElementById("restart").addEventListener("click", restartGames);
+  document.querySelector(".restart").addEventListener("click", restartGames);
   document.querySelector("#playAgain").addEventListener("click", restartGames);
 
   
@@ -167,26 +163,28 @@ function shuffle(array) {
 	function ratingStars() {
 		if (moves < 20) {
 			document.querySelectorAll(".starModel");
+			document.querySelectorAll(".stars");
 		}
 		if (moves > 19 && moves < 28) {
 			document.querySelector(".twoS").style.display = "none";
+			document.querySelector(".s2").style.display = "none";
 		}
 		 if (moves > 28) {
 			document.querySelector(".twoS").style.display = "none";
-			document.querySelector(".treeS").style.display = "none";
+			document.querySelector(".threeS").style.display = "none";
+			document.querySelector(".s2").style.display = "none";
+			document.querySelector(".s3").style.display = "none";
   }
 		
 	}	
 
 
 //close modal
- closeModal = document.querySelector(".close")
+ function closeModal() {
+	 closeModal = document.querySelector(".close")
   closeModal.addEventListener("click", function() {
       modal.style.display = "none";
-  });
+	  timer.reset();
+ })};
 
-  //timer function 
-timer.addEventListener('secondsUpdated', function (e) {
-    $('#basicUsage').html(timer.getTimeValues().toString());
-});
-      
+  

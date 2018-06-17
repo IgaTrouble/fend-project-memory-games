@@ -27,3 +27,14 @@ If they don't match, they will turn back over.
 Remember what was on each card and where it was.
 The game is over when all the cards have been matched.
 The less your moves the better your score. 
+
+
+## Dependencies
+
+js/app.js
+https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js
+https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js
+lib/easytimer/dist/easytimer.min.js
+
+https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css
+https://fonts.googleapis.com/css?family=Coda
