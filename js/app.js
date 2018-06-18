@@ -9,11 +9,11 @@
  let modal = document.querySelector(".modal");
  let shuffledCards = shuffle(cards)
  let moves = 0;
- let star = document.querySelectorAll(".star");
- let stars = [...star];
  let yourTime;
  var timer = new Timer();
- 
+  let star = document.querySelectorAll(".stars .fa-star");
+  let stars = [...star];
+ const starX = document.querySelector(".stars").innerHTML;
  timer.addEventListener('secondsUpdated', function (e) {
     $('#basicUsage').html(timer.getTimeValues().toString());
 });
@@ -117,14 +117,17 @@ function shuffle(array) {
  }
 
    function startGame(){
+	   let shuffleCards = shuffle(cards);
 	   for (let i= 0; i < shuffledCards.length; i++){
        deckShuffle.appendChild(shuffledCards[i])
 	   shuffledCards[i].classList.remove('show', 'open', 'match', 'disabled')
         }
 	  matchCounter = 0;
 	  restartMoves();
+	  restartStars();
 	  openedCards = [];
-	  timer.start();  
+	  timer.start();
+	
   }
   
   
@@ -135,6 +138,13 @@ function shuffle(array) {
      cards[i].classList.add("disabled");
    }
  }
+ 
+ function restartStars() {
+	 document.querySelector(".stars").innerHTML = starX;
+ }
+ 
+
+ 
 
  //Enable clicking when cards closed
  function enable(){
@@ -144,19 +154,18 @@ function shuffle(array) {
    }
  }
   
-  function restartGames() {
-	  startGame();
+ function restartGames() {
 	  modal.style.display = "none";
 	  timer.reset();
+	  startGame();	
   }
-  
+
   // when f5 browser
   window.onload = startGame();
   
 	//restart game
-  document.querySelector(".restart").addEventListener("click", restartGames);
-  document.querySelector("#playAgain").addEventListener("click", restartGames);
-
+document.querySelector(".restart").addEventListener("click", restartGames);
+document.querySelector("#playAgain").addEventListener("click", restartGames);
   
  
   // function ratingStars 
