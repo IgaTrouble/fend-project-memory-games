@@ -10,10 +10,12 @@
  let shuffledCards = shuffle(cards)
  let moves = 0;
  let yourTime;
- var timer = new Timer();
-  let star = document.querySelectorAll(".stars .fa-star");
-  let stars = [...star];
+ let timer = new Timer();
+ let star = document.querySelectorAll(".stars .fa-star");
+ let stars = [...star];
  const starX = document.querySelector(".stars").innerHTML;
+ 
+ //timer from easytimer.js
  timer.addEventListener('secondsUpdated', function (e) {
     $('#basicUsage').html(timer.getTimeValues().toString());
 });
@@ -22,17 +24,17 @@
  
   //Event listener for a card - click
   for (let i = 0; i < cards.length; i++) {
-  cards[i].addEventListener("click", cardOpen);
-  cards[i].addEventListener("click", displayCard);
-  cards[i].addEventListener("click", counterMoves);
+	  cards[i].addEventListener("click", cardOpen);
+	  cards[i].addEventListener("click", displayCard);
+	  cards[i].addEventListener("click", counterMoves);
   
   }
  
  //  display cards function
   function displayCard() {
-   this.classList.toggle('open')
-   this.classList.toggle('show')
-   this.classList.toggle('disabled')
+	   this.classList.toggle('open')
+	   this.classList.toggle('show')
+	   this.classList.toggle('disabled')
   } 
   
  // function card open
@@ -44,12 +46,12 @@
             match()
             matchCounter++ ;
          } else {
-            unmatch()
+			unmatch()
          }
      }
 		if (matchCounter ===8){
-		timer.stop();
-		openModal()
+			timer.stop();
+			openModal()
 		}
  }
  
@@ -116,17 +118,17 @@ function shuffle(array) {
    ratingStars();
  }
 
-   function startGame(){
+  function startGame(){
 	   let shuffleCards = shuffle(cards);
 	   for (let i= 0; i < shuffledCards.length; i++){
-       deckShuffle.appendChild(shuffledCards[i])
-	   shuffledCards[i].classList.remove('show', 'open', 'match', 'disabled')
+		   deckShuffle.appendChild(shuffledCards[i])
+		   shuffledCards[i].classList.remove('show', 'open', 'match', 'disabled')
         }
-	  matchCounter = 0;
-	  restartMoves();
-	  restartStars();
-	  openedCards = [];
-	  timer.start();
+		 matchCounter = 0;
+		 restartMoves();
+		 restartStars();
+		 openedCards = [];
+		 timer.start();
 	
   }
   
@@ -191,9 +193,9 @@ document.querySelector("#playAgain").addEventListener("click", restartGames);
 //close modal
  function closeModal() {
 	 closeModal = document.querySelector(".close")
-  closeModal.addEventListener("click", function() {
-      modal.style.display = "none";
-	  timer.reset();
+	 closeModal.addEventListener("click", function() {
+		  modal.style.display = "none";
+		  timer.reset();
  })};
 
   
